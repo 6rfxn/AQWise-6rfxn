@@ -2,7 +2,7 @@
 
 Educational project for AQWise
 
-## Current Features (v1.1)
+## [Current Features (v1.1)](https://github.com/6rfxn/AQWise-6rfxn/releases/tag/v1.1)
 
 ###  Implemented
 - Multi-language support (English, Indo, Malay)
