@@ -1,0 +1,15 @@
+{
+  "@@locale": "ms",
+  "myQuran": "Quranku",
+  "settings": "Tetapan",
+  "theme": "Tema",
+  "darkMode": "Mod Gelap",
+  "lightMode": "Mod Terang",
+  "language": "Bahasa",
+  "welcomeMessage": "Selamat datang ke MyQuran",
+  "appInDevelopment": "Aplikasi masih dalam pembangunan",
+  "ok": "OK",
+  "english": "Bahasa Inggeris",
+  "bahasa": "Bahasa Indonesia",
+  "bahasaMelayu": "Bahasa Melayu"
+}
