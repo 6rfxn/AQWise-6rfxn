@@ -1,16 +1,15 @@
-# irfan
+# AQWise-6rfxn
 
-AQWise Project
+Educational project for AQWise
 
-## Getting Started
+## Current Features (v1.1)
 
-This project is a starting point for a Flutter application.
+###  Implemented
+- Multi-language support (English, Indo, Malay)
+- Settings page with drawer
+- Dark/Light theme
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Built With
+- **State Management:** Provider
+- **Localization:** Flutter i18n
+- **Storage:** SharedPreferences
