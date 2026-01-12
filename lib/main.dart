@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:irfan/l10n/app_localizations.dart';
-import 'package:irfan/pages/home_page.dart';
+import 'package:irfan/pages/main_page.dart';
 import 'package:irfan/provider/theme_provider.dart';
 import 'package:irfan/provider/locale_provider.dart';
 import 'package:irfan/theme/theme.dart';
@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
           theme: lightMode,
           darkTheme: darkMode,
           themeMode: themeProvider.themeMode,
-          home: const HomePage(),
+          home: const MainPage(),
         );
       },
     );
