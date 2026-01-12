@@ -19,17 +19,22 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
+    final bgColor = isDarkMode ? const Color(0xFF0A0F1C) : const Color(0xFFF8FAFC);
+    
     return Scaffold(
+      backgroundColor: bgColor,
       body: _pages[_currentIndex],
       bottomNavigationBar: Container(
         margin: const EdgeInsets.fromLTRB(16, 0, 16, 30),
         height: 80,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
-          color: Theme.of(context).colorScheme.surface,
+          color: bgColor,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(),
+              color: Colors.black.withValues(alpha: 0.2),
               blurRadius: 10,
               offset: const Offset(0, 5),
             ),
@@ -47,10 +52,11 @@ class _MainPageState extends State<MainPage> {
   }
 
   Widget _tab(IconData icon, IconData activeIcon, String label, int index) {
+    final theme = Theme.of(context);
     final isSelected = _currentIndex == index;
     final color = isSelected
-        ? Theme.of(context).colorScheme.primary
-        : Theme.of(context).colorScheme.onSurface.withOpacity(0.6);
+        ? theme.colorScheme.primary
+        : theme.colorScheme.onSurface.withValues(alpha: 0.6);
 
     return GestureDetector(
       onTap: () => setState(() => _currentIndex = index),

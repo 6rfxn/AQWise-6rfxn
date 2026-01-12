@@ -43,4 +43,22 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get bahasaMelayu => 'Bahasa Melayu';
+
+  @override
+  String get prayerTimes => 'Waktu Sholat';
+
+  @override
+  String get fajr => 'Subuh';
+
+  @override
+  String get dhuhr => 'Dzuhur';
+
+  @override
+  String get asr => 'Ashar';
+
+  @override
+  String get maghrib => 'Maghrib';
+
+  @override
+  String get isha => 'Isya';
 }

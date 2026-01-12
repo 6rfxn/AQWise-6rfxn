@@ -34,9 +34,7 @@ class SettingsPage extends StatelessWidget {
           leading: Icon(theme.isDarkMode ? Icons.dark_mode : Icons.light_mode),
           title: Text(l10n?.theme ?? 'Theme'),
           subtitle: Text(
-            theme.isDarkMode
-                ? (l10n?.darkMode ?? 'Dark Mode')
-                : (l10n?.lightMode ?? 'Light Mode'),
+            theme.isDarkMode ? (l10n?.darkMode ?? 'Dark Mode') : (l10n?.lightMode ?? 'Light Mode'),
           ),
           trailing: Switch(
             value: theme.isDarkMode,

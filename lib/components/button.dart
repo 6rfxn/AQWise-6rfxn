@@ -37,44 +37,44 @@ class MyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isEnabled = onPressed != null && !isLoading;
+    final enabled = onPressed != null && !isLoading;
 
-    Color? bgColor;
-    Color? txtColor;
-    Color? borderColor;
-    double? elevation;
+    Color? bg;
+    Color? txt;
+    Color? border;
+    double? elev;
 
     switch (variant) {
       case ButtonVariant.primary:
-        bgColor = backgroundColor ?? theme.colorScheme.primary;
-        txtColor = textColor ?? Colors.white;
-        elevation = isEnabled ? 2 : 0;
+        bg = backgroundColor ?? theme.colorScheme.primary;
+        txt = textColor ?? Colors.white;
+        elev = enabled ? 2 : 0;
         break;
       case ButtonVariant.secondary:
-        bgColor = backgroundColor ?? theme.colorScheme.secondary;
-        txtColor = textColor ?? Colors.white;
-        elevation = isEnabled ? 2 : 0;
+        bg = backgroundColor ?? theme.colorScheme.secondary;
+        txt = textColor ?? Colors.white;
+        elev = enabled ? 2 : 0;
         break;
       case ButtonVariant.outlined:
-        bgColor = Colors.transparent;
-        txtColor = textColor ?? theme.colorScheme.primary;
-        borderColor = theme.colorScheme.primary;
-        elevation = 0;
+        bg = Colors.transparent;
+        txt = textColor ?? theme.colorScheme.primary;
+        border = theme.colorScheme.primary;
+        elev = 0;
         break;
       case ButtonVariant.text:
-        bgColor = Colors.transparent;
-        txtColor = textColor ?? theme.colorScheme.primary;
-        elevation = 0;
+        bg = Colors.transparent;
+        txt = textColor ?? theme.colorScheme.primary;
+        elev = 0;
         break;
     }
 
-    Widget buttonChild = isLoading
+    final child = isLoading
         ? SizedBox(
             width: 20,
             height: 20,
             child: CircularProgressIndicator(
               strokeWidth: 2,
-              valueColor: AlwaysStoppedAnimation<Color>(txtColor),
+              valueColor: AlwaysStoppedAnimation<Color>(txt),
             ),
           )
         : Row(
@@ -82,13 +82,13 @@ class MyButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (icon != null) ...[
-                Icon(icon, size: 20, color: txtColor),
+                Icon(icon, size: 20, color: txt),
                 const SizedBox(width: 8),
               ],
               Text(
                 text,
                 style: TextStyle(
-                  color: txtColor,
+                  color: txt,
                   fontSize: fontSize ?? 16,
                   fontWeight: fontWeight ?? FontWeight.w600,
                 ),
@@ -96,28 +96,26 @@ class MyButton extends StatelessWidget {
             ],
           );
 
-    Widget button = Container(
-      width: width,
-      height: height ?? 48,
-      padding: padding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-      decoration: BoxDecoration(
-        color: bgColor,
-        borderRadius: borderRadius ?? BorderRadius.circular(8),
-        border: borderColor != null
-            ? Border.all(color: borderColor, width: 1.5)
-            : null,
-      ),
-      child: Center(child: buttonChild),
-    );
-
     return Material(
       color: Colors.transparent,
-      elevation: elevation,
+      elevation: elev,
       borderRadius: borderRadius ?? BorderRadius.circular(8),
       child: InkWell(
-        onTap: isEnabled ? onPressed : null,
+        onTap: enabled ? onPressed : null,
         borderRadius: borderRadius ?? BorderRadius.circular(8),
-        child: button,
+        child: Container(
+          width: width,
+          height: height ?? 48,
+          padding: padding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          decoration: BoxDecoration(
+            color: bg,
+            borderRadius: borderRadius ?? BorderRadius.circular(8),
+            border: border != null
+                ? Border.all(color: border, width: 1.5)
+                : null,
+          ),
+          child: Center(child: child),
+        ),
       ),
     );
   }

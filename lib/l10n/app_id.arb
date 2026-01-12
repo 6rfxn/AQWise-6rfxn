@@ -11,5 +11,11 @@
   "ok": "OK",
   "english": "Bahasa Inggris",
   "bahasa": "Bahasa Indonesia",
-  "bahasaMelayu": "Bahasa Melayu"
+  "bahasaMelayu": "Bahasa Melayu",
+  "prayerTimes": "Waktu Sholat",
+  "fajr": "Subuh",
+  "dhuhr": "Dzuhur",
+  "asr": "Ashar",
+  "maghrib": "Maghrib",
+  "isha": "Isya"
 }
