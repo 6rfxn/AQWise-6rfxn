@@ -508,3 +508,4 @@ flutter run
 - [ ] Configure `MaterialApp` with delegates
 - [ ] Run `flutter pub get`
 - [ ] Import and use `AppLocalizations.of(context)`
+

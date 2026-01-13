@@ -207,6 +207,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Isha'**
   String get isha;
+
+  /// No description provided for @tajweedTask.
+  ///
+  /// In en, this message translates to:
+  /// **'Tajweed Task'**
+  String get tajweedTask;
+
+  /// No description provided for @chooseWordInstruction.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a word below, then assign its correct Tajweed rule'**
+  String get chooseWordInstruction;
+
+  /// No description provided for @assignRule.
+  ///
+  /// In en, this message translates to:
+  /// **'Assign a rule'**
+  String get assignRule;
+
+  /// No description provided for @selectTajweedRule.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Tajweed Rule'**
+  String get selectTajweedRule;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// No description provided for @success.
+  ///
+  /// In en, this message translates to:
+  /// **'Success'**
+  String get success;
+
+  /// No description provided for @ruleSavedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Rule saved successfully!'**
+  String get ruleSavedSuccessfully;
+
+  /// No description provided for @explore.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore'**
+  String get explore;
+
+  /// No description provided for @learnTajweedRules.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn the rules of Tajweed'**
+  String get learnTajweedRules;
 }
 
 class _AppLocalizationsDelegate

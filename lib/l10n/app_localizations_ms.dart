@@ -61,4 +61,32 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get isha => 'Isyak';
+
+  @override
+  String get tajweedTask => 'Tugas Tajwid';
+
+  @override
+  String get chooseWordInstruction =>
+      'Pilih perkataan di bawah, kemudian tetapkan peraturan Tajwid yang betul';
+
+  @override
+  String get assignRule => 'Tetapkan peraturan';
+
+  @override
+  String get selectTajweedRule => 'Pilih Peraturan Tajwid';
+
+  @override
+  String get confirm => 'Sahkan';
+
+  @override
+  String get success => 'Berjaya';
+
+  @override
+  String get ruleSavedSuccessfully => 'Peraturan berjaya disimpan!';
+
+  @override
+  String get explore => 'Terokai';
+
+  @override
+  String get learnTajweedRules => 'Pelajari peraturan-peraturan Tajwid';
 }

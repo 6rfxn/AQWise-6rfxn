@@ -61,4 +61,32 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get isha => 'Isha';
+
+  @override
+  String get tajweedTask => 'Tajweed Task';
+
+  @override
+  String get chooseWordInstruction =>
+      'Choose a word below, then assign its correct Tajweed rule';
+
+  @override
+  String get assignRule => 'Assign a rule';
+
+  @override
+  String get selectTajweedRule => 'Select Tajweed Rule';
+
+  @override
+  String get confirm => 'Confirm';
+
+  @override
+  String get success => 'Success';
+
+  @override
+  String get ruleSavedSuccessfully => 'Rule saved successfully!';
+
+  @override
+  String get explore => 'Explore';
+
+  @override
+  String get learnTajweedRules => 'Learn the rules of Tajweed';
 }

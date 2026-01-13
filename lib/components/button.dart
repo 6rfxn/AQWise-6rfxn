@@ -38,85 +38,104 @@ class MyButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final enabled = onPressed != null && !isLoading;
-
-    Color? bg;
-    Color? txt;
-    Color? border;
-    double? elev;
-
-    switch (variant) {
-      case ButtonVariant.primary:
-        bg = backgroundColor ?? theme.colorScheme.primary;
-        txt = textColor ?? Colors.white;
-        elev = enabled ? 2 : 0;
-        break;
-      case ButtonVariant.secondary:
-        bg = backgroundColor ?? theme.colorScheme.secondary;
-        txt = textColor ?? Colors.white;
-        elev = enabled ? 2 : 0;
-        break;
-      case ButtonVariant.outlined:
-        bg = Colors.transparent;
-        txt = textColor ?? theme.colorScheme.primary;
-        border = theme.colorScheme.primary;
-        elev = 0;
-        break;
-      case ButtonVariant.text:
-        bg = Colors.transparent;
-        txt = textColor ?? theme.colorScheme.primary;
-        elev = 0;
-        break;
-    }
-
-    final child = isLoading
-        ? SizedBox(
-            width: 20,
-            height: 20,
-            child: CircularProgressIndicator(
-              strokeWidth: 2,
-              valueColor: AlwaysStoppedAnimation<Color>(txt),
-            ),
-          )
-        : Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if (icon != null) ...[
-                Icon(icon, size: 20, color: txt),
-                const SizedBox(width: 8),
-              ],
-              Text(
-                text,
-                style: TextStyle(
-                  color: txt,
-                  fontSize: fontSize ?? 16,
-                  fontWeight: fontWeight ?? FontWeight.w600,
-                ),
-              ),
-            ],
-          );
+    final colors = _getColors(theme);
+    final radius = borderRadius ?? BorderRadius.circular(8);
 
     return Material(
       color: Colors.transparent,
-      elevation: elev,
-      borderRadius: borderRadius ?? BorderRadius.circular(8),
+      elevation: colors.elevation,
+      borderRadius: radius,
       child: InkWell(
         onTap: enabled ? onPressed : null,
-        borderRadius: borderRadius ?? BorderRadius.circular(8),
+        borderRadius: radius,
         child: Container(
           width: width,
           height: height ?? 48,
           padding: padding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           decoration: BoxDecoration(
-            color: bg,
-            borderRadius: borderRadius ?? BorderRadius.circular(8),
-            border: border != null
-                ? Border.all(color: border, width: 1.5)
+            color: colors.background,
+            borderRadius: radius,
+            border: colors.border != null
+                ? Border.all(color: colors.border!, width: 1.5)
                 : null,
           ),
-          child: Center(child: child),
+          child: Center(child: _buildContent(colors.text)),
         ),
       ),
     );
   }
+
+  _ButtonColors _getColors(ThemeData theme) {
+    switch (variant) {
+      case ButtonVariant.primary:
+        return _ButtonColors(
+          background: backgroundColor ?? theme.colorScheme.primary,
+          text: textColor ?? Colors.white,
+          elevation: (onPressed != null && !isLoading) ? 2.0 : 0.0,
+        );
+      case ButtonVariant.secondary:
+        return _ButtonColors(
+          background: backgroundColor ?? theme.colorScheme.secondary,
+          text: textColor ?? Colors.white,
+          elevation: (onPressed != null && !isLoading) ? 2.0 : 0.0,
+        );
+      case ButtonVariant.outlined:
+        return _ButtonColors(
+          background: Colors.transparent,
+          text: textColor ?? theme.colorScheme.primary,
+          border: theme.colorScheme.primary,
+        );
+      case ButtonVariant.text:
+        return _ButtonColors(
+          background: Colors.transparent,
+          text: textColor ?? theme.colorScheme.primary,
+        );
+    }
+  }
+
+  Widget _buildContent(Color textColor) {
+    if (isLoading) {
+      return SizedBox(
+        width: 20,
+        height: 20,
+        child: CircularProgressIndicator(
+          strokeWidth: 2,
+          valueColor: AlwaysStoppedAnimation<Color>(textColor),
+        ),
+      );
+    }
+
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        if (icon != null) ...[
+          Icon(icon, size: 20, color: textColor),
+          const SizedBox(width: 8),
+        ],
+        Text(
+          text,
+          style: TextStyle(
+            color: textColor,
+            fontSize: fontSize ?? 16,
+            fontWeight: fontWeight ?? FontWeight.w600,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _ButtonColors {
+  final Color background;
+  final Color text;
+  final Color? border;
+  final double elevation;
+
+  _ButtonColors({
+    required this.background,
+    required this.text,
+    this.border,
+    this.elevation = 0.0,
+  });
 }

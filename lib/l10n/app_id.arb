@@ -17,5 +17,14 @@
   "dhuhr": "Dzuhur",
   "asr": "Ashar",
   "maghrib": "Maghrib",
-  "isha": "Isya"
+  "isha": "Isya",
+  "tajweedTask": "Tugas Tajwid",
+  "chooseWordInstruction": "Pilih kata di bawah, lalu tetapkan aturan Tajwid yang benar",
+  "assignRule": "Tetapkan aturan",
+  "selectTajweedRule": "Pilih Aturan Tajwid",
+  "confirm": "Konfirmasi",
+  "success": "Berhasil",
+  "ruleSavedSuccessfully": "Aturan berhasil disimpan!",
+  "explore": "Jelajahi",
+  "learnTajweedRules": "Pelajari aturan-aturan Tajwid"
 }

@@ -17,41 +17,44 @@ class _MainPageState extends State<MainPage> {
     const SettingsPage(),
   ];
 
+  bool get _isDarkMode => Theme.of(context).brightness == Brightness.dark;
+  Color get _bgColor => _isDarkMode ? const Color(0xFF0A0F1C) : const Color(0xFFF8FAFC);
+
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final isDarkMode = theme.brightness == Brightness.dark;
-    final bgColor = isDarkMode ? const Color(0xFF0A0F1C) : const Color(0xFFF8FAFC);
-    
     return Scaffold(
-      backgroundColor: bgColor,
+      backgroundColor: _bgColor,
       body: _pages[_currentIndex],
-      bottomNavigationBar: Container(
-        margin: const EdgeInsets.fromLTRB(16, 0, 16, 30),
-        height: 80,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25),
-          color: bgColor,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.2),
-              blurRadius: 10,
-              offset: const Offset(0, 5),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            _tab(Icons.home_outlined, Icons.home, 'Home', 0),
-            _tab(Icons.settings_outlined, Icons.settings, 'Settings', 1),
-          ],
-        ),
+      bottomNavigationBar: _buildBottomNav(),
+    );
+  }
+
+  Widget _buildBottomNav() {
+    return Container(
+      margin: const EdgeInsets.fromLTRB(16, 0, 16, 30),
+      height: 80,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25),
+        color: _bgColor,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.2),
+            blurRadius: 10,
+            offset: const Offset(0, 5),
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          _buildTab(Icons.home_outlined, Icons.home, 'Home', 0),
+          _buildTab(Icons.settings_outlined, Icons.settings, 'Settings', 1),
+        ],
       ),
     );
   }
 
-  Widget _tab(IconData icon, IconData activeIcon, String label, int index) {
+  Widget _buildTab(IconData icon, IconData activeIcon, String label, int index) {
     final theme = Theme.of(context);
     final isSelected = _currentIndex == index;
     final color = isSelected

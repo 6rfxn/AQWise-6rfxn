@@ -5,17 +5,21 @@ import 'package:irfan/l10n/app_localizations.dart';
 import 'package:irfan/pages/main_page.dart';
 import 'package:irfan/provider/theme_provider.dart';
 import 'package:irfan/provider/locale_provider.dart';
+import 'package:irfan/provider/tajweed_provider.dart';
 import 'package:irfan/theme/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
-  // Initialize providers and load saved preferences
+  // Initialize providers
   final themeProvider = ThemeProvider();
   final localeProvider = LocaleProvider();
+  final tajweedProvider = TajweedProvider();
+  
   await Future.wait([
     themeProvider.loadTheme(),
     localeProvider.loadLocale(),
+    tajweedProvider.loadSavedData(),
   ]);
   
   runApp(
@@ -23,6 +27,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider.value(value: themeProvider),
         ChangeNotifierProvider.value(value: localeProvider),
+        ChangeNotifierProvider.value(value: tajweedProvider),
       ],
       child: const MyApp(),
     ),

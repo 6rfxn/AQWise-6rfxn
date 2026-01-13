@@ -10,8 +10,7 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final locale = Localizations.localeOf(context);
-
+    
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n?.settings ?? 'Settings'),
@@ -19,14 +18,14 @@ class SettingsPage extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          _themeOption(context),
-          _langOption(context, l10n, locale),
+          _buildThemeOption(context),
+          _buildLanguageOption(context),
         ],
       ),
     );
   }
 
-  Widget _themeOption(BuildContext context) {
+  Widget _buildThemeOption(BuildContext context) {
     return Consumer<ThemeProvider>(
       builder: (_, theme, _) {
         final l10n = AppLocalizations.of(context);
@@ -34,7 +33,9 @@ class SettingsPage extends StatelessWidget {
           leading: Icon(theme.isDarkMode ? Icons.dark_mode : Icons.light_mode),
           title: Text(l10n?.theme ?? 'Theme'),
           subtitle: Text(
-            theme.isDarkMode ? (l10n?.darkMode ?? 'Dark Mode') : (l10n?.lightMode ?? 'Light Mode'),
+            theme.isDarkMode 
+                ? (l10n?.darkMode ?? 'Dark Mode') 
+                : (l10n?.lightMode ?? 'Light Mode'),
           ),
           trailing: Switch(
             value: theme.isDarkMode,
@@ -45,17 +46,22 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
-  Widget _langOption(BuildContext context, AppLocalizations? l10n, Locale locale) {
+  Widget _buildLanguageOption(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final locale = Localizations.localeOf(context);
+    
     return ListTile(
       leading: const Icon(Icons.language),
       title: Text(l10n?.language ?? 'Language'),
       subtitle: Text(locale.languageCode),
       trailing: const Icon(Icons.chevron_right),
-      onTap: () => _showLangDialog(context, l10n, locale),
+      onTap: () => _showLanguageDialog(context),
     );
   }
 
-  void _showLangDialog(BuildContext context, AppLocalizations? l10n, Locale locale) {
+  void _showLanguageDialog(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final locale = Localizations.localeOf(context);
     final languages = {
       'en': l10n?.english ?? 'English',
       'id': l10n?.bahasa ?? 'Bahasa Indonesia',
@@ -66,11 +72,11 @@ class SettingsPage extends StatelessWidget {
       context: context,
       builder: (ctx) => SimpleDialog(
         title: Text(l10n?.language ?? 'Language'),
-        children: languages.entries.map((e) {
-          final isSelected = locale.languageCode == e.key;
+        children: languages.entries.map((entry) {
+          final isSelected = locale.languageCode == entry.key;
           return SimpleDialogOption(
             onPressed: () {
-              context.read<LocaleProvider>().setLocale(Locale(e.key));
+              context.read<LocaleProvider>().setLocale(Locale(entry.key));
               Navigator.pop(ctx);
             },
             child: Row(
@@ -82,7 +88,7 @@ class SettingsPage extends StatelessWidget {
                       : Colors.grey,
                 ),
                 const SizedBox(width: 16),
-                Text(e.value),
+                Text(entry.value),
               ],
             ),
           );

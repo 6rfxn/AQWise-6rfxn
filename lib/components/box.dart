@@ -37,17 +37,13 @@ class MyBox extends StatelessWidget {
       margin: margin,
       alignment: alignment,
       decoration: BoxDecoration(
-        color: gradient == null ? (color ?? Theme.of(context).colorScheme.surface) : null,
+        color: gradient == null 
+            ? (color ?? Theme.of(context).colorScheme.surface) 
+            : null,
         gradient: gradient,
         borderRadius: borderRadius ?? BorderRadius.circular(8),
         border: border,
-        boxShadow: boxShadow ?? [
-          BoxShadow(
-            color: Colors.black.withValues(),
-            blurRadius: 4,
-            offset: const Offset(0, 2),
-          ),
-        ],
+        boxShadow: boxShadow,
       ),
       child: child,
     );

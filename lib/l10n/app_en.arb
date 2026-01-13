@@ -17,5 +17,14 @@
   "dhuhr": "Dhuhr",
   "asr": "Asr",
   "maghrib": "Maghrib",
-  "isha": "Isha"
+  "isha": "Isha",
+  "tajweedTask": "Tajweed Task",
+  "chooseWordInstruction": "Choose a word below, then assign its correct Tajweed rule",
+  "assignRule": "Assign a rule",
+  "selectTajweedRule": "Select Tajweed Rule",
+  "confirm": "Confirm",
+  "success": "Success",
+  "ruleSavedSuccessfully": "Rule saved successfully!",
+  "explore": "Explore",
+  "learnTajweedRules": "Learn the rules of Tajweed"
 }
