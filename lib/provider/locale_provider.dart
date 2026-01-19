@@ -8,10 +8,11 @@ class LocaleProvider with ChangeNotifier {
 
   LocaleProvider();
 
-  Future<void> loadLocale() async {
+  Future<void> load() async {
     try {
       final prefs = await SharedPreferences.getInstance();
       final langCode = prefs.getString(_localeKey) ?? 'en';
+      print(langCode);
       _locale = Locale(langCode);
     } catch (e) {
       _locale = const Locale('en');
@@ -29,7 +30,7 @@ class LocaleProvider with ChangeNotifier {
     }
   }
 
-  Future<void> setLocale(Locale locale) async {
+  Future<void> set(Locale locale) async {
     if (_locale.languageCode != locale.languageCode) {
       _locale = locale;
       await _save(locale.languageCode);

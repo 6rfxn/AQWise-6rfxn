@@ -17,9 +17,9 @@ void main() async {
   final tajweedProvider = TajweedProvider();
   
   await Future.wait([
-    themeProvider.loadTheme(),
-    localeProvider.loadLocale(),
-    tajweedProvider.loadSavedData(),
+    themeProvider.load(),
+    localeProvider.load(),
+    tajweedProvider.load(),
   ]);
   
   runApp(
@@ -42,6 +42,7 @@ class MyApp extends StatelessWidget {
     return Consumer2<ThemeProvider, LocaleProvider>(
       builder: (context, themeProvider, localeProvider, child) {
         return MaterialApp(
+          debugShowCheckedModeBanner: false, // disable banner
           title: 'irfan',
           // Localization configuration
           locale: localeProvider.locale,

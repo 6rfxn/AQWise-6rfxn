@@ -76,7 +76,7 @@ class SettingsPage extends StatelessWidget {
           final isSelected = locale.languageCode == entry.key;
           return SimpleDialogOption(
             onPressed: () {
-              context.read<LocaleProvider>().setLocale(Locale(entry.key));
+              context.read<LocaleProvider>().set(Locale(entry.key));
               Navigator.pop(ctx);
             },
             child: Row(

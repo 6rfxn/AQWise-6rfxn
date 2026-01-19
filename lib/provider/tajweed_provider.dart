@@ -14,41 +14,45 @@ class TajweedProvider with ChangeNotifier {
     'Madd',
   ];
 
-  Map<String, String> _savedData = {};
-  String? _selectedRule;
+  Map<String, List<String>> _savedData = {};
 
   List<String> get tajweedRules => _tajweedRules;
-  Map<String, String> get savedData => _savedData;
-  String? get selectedRule => _selectedRule;
+  Map<String, List<String>> get savedData => _savedData;
 
   TajweedProvider() {
-    loadSavedData();
+    load();
   }
 
-  void selectRule(String? rule) {
-    _selectedRule = rule;
+  Future<void> confirmSelection(String textKey, List<String> rules) async {
+    if (rules.isEmpty) {
+      _savedData.remove(textKey);
+    } else {
+      _savedData[textKey] = rules;
+    }
+    await _save();
     notifyListeners();
   }
 
-  Future<void> confirmSelection(String textKey) async {
-    if (_selectedRule != null) {
-      _savedData[textKey] = _selectedRule!;
-      await _saveToPrefs();
-      _selectedRule = null;
-      notifyListeners();
-    }
-  }
-
-  Future<void> loadSavedData() async {
+  Future<void> load() async {
     final prefs = await SharedPreferences.getInstance();
     final String? dataJson = prefs.getString('tajweed_data');
     if (dataJson != null) {
-      _savedData = Map<String, String>.from(json.decode(dataJson));
+      print(dataJson);
+      final decoded = json.decode(dataJson) as Map<String, dynamic>;
+      _savedData = decoded.map((key, value) {
+        if (value is List) {
+          return MapEntry(key, List<String>.from(value));
+        }
+        if (value is String) {
+          return MapEntry(key, <String>[value]);
+        }
+        return MapEntry(key, <String>[]);
+      });
       notifyListeners();
     }
   }
 
-  Future<void> _saveToPrefs() async {
+  Future<void> _save() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('tajweed_data', json.encode(_savedData));
   }
